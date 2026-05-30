@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstraForge | Multi-Calc Engine</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495090071076386" crossorigin="anonymous"></script>
+    
+    <style>
+        /* Premium Cyberpunk & Glassmorphism Theme */
+        :root { 
+            --bg: #030712; 
+            --panel: rgba(15, 23, 42, 0.6); 
+            --accent: #00e5ff; 
+            --accent-hover: #00b4cc;
+            --accent-alt: #ff0055;
+            --success: #10b981;
+            --text: #e2e8f0; 
+            --text-muted: #94a3b8;
+            --glow: 0 0 15px rgba(0, 229, 255, 0.3);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        body { 
+            background: var(--bg); color: var(--text); 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            margin: 0; padding: 20px; 
+            background-image: radial-gradient(circle at top, #0f172a 0%, #030712 100%);
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        
+        .container { width: 100%; max-width: 850px; }
+        
+        header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+        h1 { font-size: 2.8rem; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); text-shadow: var(--glow); margin: 0 0 10px 0; font-weight: 800; }
+        .subtitle { color: var(--text-muted); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* Elegant Navigation Tabs */
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-btn {
+            background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 12px 20px; border-radius: 8px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 600; flex: 1; min-width: 120px; text-align: center;
+        }
+        .tab-btn:hover { border-color: var(--accent); color: var(--text); box-shadow: var(--glow); transform: translateY(-2px); }
+        .tab-btn.active { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); border-color: var(--accent); }
+
+        /* Frosted Glass Panels */
+        .calc-panel {
+            background: var(--panel); padding: 40px; border-radius: 24px; 
+            border: 1px solid var(--border-color); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); display: none;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .calc-panel.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sleek Inputs */
+        .input-group { margin-bottom: 25px; display: flex; flex-direction: column; }
+        .input-group label { color: var(--accent); margin-bottom: 8px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+        input[type="number"] {
+            padding: 16px 20px; border-radius: 12px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); 
+            color: white; font-size: 1.2rem; outline: none; transition: all 0.3s ease;
+        }
+        input[type="number"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.15); background: rgba(0,0,0,0.6); }
+        
+        .action-btn {
+            width: 100%; padding: 18px; background: transparent; border: 2px solid var(--accent);
+            color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px;
+            font-weight: 800; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; margin-top: 10px;
+        }
+        .action-btn:hover { background: var(--accent); color: #000; box-shadow: 0 10px 25px rgba(0, 229, 255, 0.4); transform: translateY(-2px); }
+
+        /* High-End Output Display */
+        .output-box {
+            margin-top: 30px; padding: 25px; background: rgba(0,0,0,0.5); border-radius: 16px;
+            border-left: 4px solid var(--accent); font-size: 1.8rem; text-align: center; color: white;
+            font-weight: 300; letter-spacing: 1px; word-break: break-word;
+        }
+        .status-text { font-size: 1rem; margin-top: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+
+        /* Standard Matrix Calculator Grid */
+        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .calc-display { grid-column: span 4; background: rgba(0,0,0,0.6); padding: 30px 20px; font-size: 3rem; text-align: right; border-radius: 16px; border: 1px solid var(--border-color); color: var(--accent); font-weight: 300; letter-spacing: 2px; overflow-x: auto; margin-bottom: 25px; box-shadow: inset 0 4px 20px rgba(0,0,0,0.5); }
+        .grid-btn { padding: 22px; font-size: 1.4rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: var(--text); border-radius: 12px; cursor: pointer; transition: all 0.2s ease; font-weight: 500; }
+        .grid-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: scale(0.98); }
+        .grid-btn.operator { color: var(--accent-alt); background: rgba(255, 0, 85, 0.05); border-color: rgba(255, 0, 85, 0.2); }
+        .grid-btn.equal { grid-column: span 2; background: var(--accent); color: #000; box-shadow: var(--glow); border: none; font-weight: 800; }
+        .grid-btn.equal:hover { background: var(--accent-hover); transform: scale(0.98); }
+
+        /* Responsive Dual Inputs */
+        .dual-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .dual-inputs { grid-template-columns: 1fr; gap: 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>AstraForge Compute</h1>
+            <div class="subtitle">Multi-Variable Analytics Engine v6.0</div>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('standard', this)">Matrix</button>
+            <button class="tab-btn" onclick="switchTab('academic', this)">Academic</button>
+            <button class="tab-btn" onclick="switchTab('commercial', this)">Commercial</button>
+            <button class="tab-btn" onclick="switchTab('bmi', this)">Biometric</button>
+            <button class="tab-btn" onclick="switchTab('sip', this)">Wealth</button>
+        </div>
+
+        <div id="standard" class="calc-panel active">
+            <div class="calc-display" id="calcScreen">0</div>
+            <div class="calc-grid">
+                <button class="grid-btn" onclick="clearScreen()">C</button>
+                <button class="grid-btn" onclick="deleteLast()">DEL</button>
+                <button class="grid-btn operator" onclick="appendValue('/')">÷</button>
+                <button class="grid-btn operator" onclick="appendValue('*')">×</button>
+                
+                <button class="grid-btn" onclick="appendValue('7')">7</button>
+                <button class="grid-btn" onclick="appendValue('8')">8</button>
+                <button class="grid-btn" onclick="appendValue('9')">9</button>
+                <button class="grid-btn operator" onclick="appendValue('-')">-</button>
+                
+                <button class="grid-btn" onclick="appendValue('4')">4</button>
+                <button class="grid-btn" onclick="appendValue('5')">5</button>
+                <button class="grid-btn" onclick="appendValue('6')">6</button>
+                <button class="grid-btn operator" onclick="appendValue('+')">+</button>
+                
+                <button class="grid-btn" onclick="appendValue('1')">1</button>
+                <button class="grid-btn" onclick="appendValue('2')">2</button>
+                <button class="grid-btn" onclick="appendValue('3')">3</button>
+                <button class="grid-btn equal" onclick="calculateResult()">=</button>
+                
+                <button class="grid-btn" onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+                <button class="grid-btn" onclick="appendValue('.')">.</button>
+            </div>
+        </div>
+
+        <div id="academic" class="calc-panel">
+            <div class="dual-inputs">
+                <div class="input-group">
+                    <label>Total Marks Obtained</label>
+                    <input type="number" id="marksObtained" placeholder="e.g. 425">
+                </div>
+                <div class="input-group">
+                    <label>Maximum Possible Marks</label>
+                    <input type="number" id="marksTotal" placeholder="e.g. 500">
+                </div>
+            </div>
+            <button class="action-btn" onclick="calcAcademic()">Evaluate Grades</button>
+            <div class="output-box" id="academicOutput">
+                Awaiting Data...
+                <div class="status-text" style="color: var(--text-muted);">--</div>
+            </div>
+        </div>
+
+        <div id="commercial" class="calc-panel">
+            <div class="input-group">
+                <label>Original Price (₹)</label>
+                <input type="number" id="origPrice" placeholder="e.g. 2500">
+            </div>
+            <div class="dual-inputs">
+                <div class="input-group">
+                    <label>Discount (%)</label>
+                    <input type="number" id="discPercent" placeholder="e.g. 15">
+                </div>
+                <div class="input-group">
+                    <label>Sales Tax/GST (%)</label>
+                    <input type="number" id="taxPercent" placeholder="e.g. 18">
+                </div>
+            </div>
+            <button class="action-btn" onclick="calcCommercial()">Calculate Final Price</button>
+            <div class="output-box" id="commercialOutput">
+                Awaiting Data...
+                <div class="status-text" style="color: var(--text-muted);">--</div>
+            </div>
+        </div>
+
+        <div id="bmi" class="calc-panel">
+            <div class="dual-inputs">
+                <div class="input-group">
+                    <label>Height (in Centimeters)</label>
+                    <input type="number" id="bmiHeight" placeholder="e.g. 175">
+                </div>
+                <div class="input-group">
+                    <label>Weight (in Kilograms)</label>
+                    <input type="number" id="bmiWeight" placeholder="e.g. 70">
+                </div>
+            </div>
+            <button class="action-btn" onclick="calcBMI()">Scan Biometrics</button>
+            <div class="output-box" id="bmiOutput">
+                Awaiting Data...
+                <div class="status-text" style="color: var(--text-muted);">--</div>
+            </div>
+        </div>
+
+        <div id="sip" class="calc-panel">
+            <div class="input-group">
+                <label>Monthly Investment (₹)</label>
+                <input type="number" id="sipAmount" placeholder="e.g. 5000">
+            </div>
+            <div class="dual-inputs">
+                <div class="input-group">
+                    <label>Expected Return (%)</label>
+                    <input type="number" id="sipRate" placeholder="e.g. 12">
+                </div>
+                <div class="input-group">
+                    <label>Time Period (Years)</label>
+                    <input type="number" id="sipYears" placeholder="e.g. 10">
+                </div>
+            </div>
+            <button class="action-btn" onclick="calcSIP()">Project Wealth</button>
+            <div class="output-box" id="sipOutput">
+                Awaiting Data...
+                <div class="status-text" style="color: var(--text-muted);">--</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.calc-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // --- 1. STANDARD CALCULATOR LOGIC ---
+        const screen = document.getElementById('calcScreen');
+        let currentExpression = '';
+
+        function appendValue(val) {
+            if (screen.innerText === '0' && val !== '.') { currentExpression = val; } 
+            else { currentExpression += val; }
+            screen.innerText = currentExpression;
+        }
+
+        function clearScreen() {
+            currentExpression = ''; screen.innerText = '0';
+        }
+
+        function deleteLast() {
+            currentExpression = currentExpression.slice(0, -1);
+            screen.innerText = currentExpression === '' ? '0' : currentExpression;
+        }
+
+        function calculateResult() {
+            try {
+                const result = new Function('return ' + currentExpression)();
+                screen.innerText = Number.isInteger(result) ? result : result.toFixed(4);
+                currentExpression = screen.innerText;
+            } catch (error) {
+                screen.innerText = 'ERROR'; currentExpression = '';
+            }
+        }
+
+        // --- 2. ACADEMIC (CGPA) LOGIC ---
+        function calcAcademic() {
+            const obtained = parseFloat(document.getElementById('marksObtained').value);
+            const total = parseFloat(document.getElementById('marksTotal').value);
+            const out = document.getElementById('academicOutput');
+
+            if (!obtained || !total || obtained < 0 || total <= 0 || obtained > total) {
+                out.innerHTML = `Error <div class="status-text" style="color: var(--accent-alt);">Invalid Input Parameters.</div>`;
+                return;
+            }
+
+            const percentage = (obtained / total) * 100;
+            const cgpa = (percentage / 9.5).toFixed(1); // Standard Indian CGPA conversion
+            
+            let grade = '', color = '';
+            if(percentage >= 90) { grade = 'A+ (Distinction)'; color = 'var(--accent)'; }
+            else if(percentage >= 80) { grade = 'A (Excellent)'; color = 'var(--success)'; }
+            else if(percentage >= 70) { grade = 'B (Good)'; color = '#a3e635'; }
+            else if(percentage >= 60) { grade = 'C (Average)'; color = '#facc15'; }
+            else if(percentage >= 40) { grade = 'D (Pass)'; color = '#fb923c'; }
+            else { grade = 'F (Fail)'; color = 'var(--accent-alt)'; }
+
+            out.innerHTML = `
+                ${percentage.toFixed(1)}% <span style="color:var(--text-muted); font-size:1.2rem;">| CGPA: ${cgpa}</span>
+                <div class="status-text" style="color: ${color};">Class: ${grade}</div>
+            `;
+        }
+
+        // --- 3. COMMERCIAL (DISCOUNT/TAX) LOGIC ---
+        function calcCommercial() {
+            const price = parseFloat(document.getElementById('origPrice').value);
+            const disc = parseFloat(document.getElementById('discPercent').value) || 0;
+            const tax = parseFloat(document.getElementById('taxPercent').value) || 0;
+            const out = document.getElementById('commercialOutput');
+
+            if (!price || price <= 0) {
+                out.innerHTML = `Error <div class="status-text" style="color: var(--accent-alt);">Enter a valid price.</div>`;
+                return;
+            }
+
+            const discountAmount = price * (disc / 100);
+            const discountedPrice = price - discountAmount;
+            const taxAmount = discountedPrice * (tax / 100);
+            const finalPrice = discountedPrice + taxAmount;
+
+            out.innerHTML = `
+                Final: ₹${finalPrice.toFixed(2)}
+                <div class="status-text" style="color: var(--success); font-size: 0.9rem;">
+                    You Saved: ₹${discountAmount.toFixed(2)} | Tax Added: ₹${taxAmount.toFixed(2)}
+                </div>
+            `;
+        }
+
+        // --- 4. BIOMETRIC (BMI) LOGIC ---
+        function calcBMI() {
+            const h = parseFloat(document.getElementById('bmiHeight').value);
+            const w = parseFloat(document.getElementById('bmiWeight').value);
+            const out = document.getElementById('bmiOutput');
+
+            if (!h || !w || h <= 0 || w <= 0) {
+                out.innerHTML = `Error <div class="status-text" style="color: var(--accent-alt);">Invalid Biometrics.</div>`;
+                return;
+            }
+
+            const meters = h / 100;
+            const bmi = (w / (meters * meters)).toFixed(1);
+            
+            let statusMsg = '', color = '';
+            if (bmi < 18.5) { statusMsg = "Underweight"; color = "#facc15"; } 
+            else if (bmi <= 24.9) { statusMsg = "Optimal Weight"; color = "var(--success)"; } 
+            else if (bmi <= 29.9) { statusMsg = "Overweight"; color = "#fb923c"; } 
+            else { statusMsg = "High Risk (Obese)"; color = "var(--accent-alt)"; }
+
+            out.innerHTML = `
+                Index: ${bmi}
+                <div class="status-text" style="color: ${color};">Status: ${statusMsg}</div>
+            `;
+        }
+
+        // --- 5. WEALTH (SIP) LOGIC ---
+        function calcSIP() {
+            const p = parseFloat(document.getElementById('sipAmount').value);
+            const r = parseFloat(document.getElementById('sipRate').value);
+            const t = parseFloat(document.getElementById('sipYears').value);
+            const out = document.getElementById('sipOutput');
+
+            if (!p || !r || !t || p <= 0 || r <= 0 || t <= 0) {
+                out.innerHTML = `Error <div class="status-text" style="color: var(--accent-alt);">Invalid Financial Data.</div>`;
+                return;
+            }
+
+            const i = (r / 100) / 12;
+            const n = t * 12;
+            const futureValue = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+            const totalInvested = p * n;
+
+            const format = (num) => "₹" + Math.round(num).toLocaleString('en-IN');
+
+            out.innerHTML = `
+                ${format(futureValue)}
+                <div class="status-text" style="color: var(--accent); font-size: 0.9rem;">
+                    Invested: ${format(totalInvested)} | Est. Returns: ${format(futureValue - totalInvested)}
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
