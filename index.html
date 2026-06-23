@@ -1,442 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5HVBHX1KDW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5HVBHX1KDW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5HVBHX1KDW');
+    </script>
 
-  gtag('config', 'G-5HVBHX1KDW');
-</script>
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusCalc | Premium Calculation Suite</title>
+    <title>NexusCalc | Intelligence & Analytics Hub</title>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495090071076386" crossorigin="anonymous"></script>
-    
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        /* High-Trust Minimalist Premium Theme */
-        :root { 
-            --bg-page: #f8fafc;        /* Soft off-white for the background */
-            --bg-card: #ffffff;        /* Pure white for the calculators */
-            --text-main: #0f172a;      /* Deep slate for primary text */
-            --text-muted: #64748b;     /* Soft slate for secondary text */
-            --border-light: #e2e8f0;   /* Clean, faint borders */
-            --primary: #2563eb;        /* Trusted corporate blue */
-            --primary-hover: #1d4ed8;
-            --primary-bg: #eff6ff;     /* Very light blue for outputs */
-            --success: #059669;
-            --danger: #e11d48;
-            --warning: #d97706;
+        /* Elite Dark Glassmorphism Theme */
+        :root {
+            --bg-deep: #050814; 
+            --panel-glass: rgba(13, 17, 28, 0.65);
+            --neon-blue: #3B82F6; --neon-cyan: #00E5FF;
+            --neon-emerald: #10B981; --neon-crimson: #EF4444;
+            --neon-amber: #F59E0B; --neon-purple: #8B5CF6;
+            --text-primary: #F8FAFC; --text-dim: #94A3B8; 
+            --border-glow: rgba(255, 255, 255, 0.08);
         }
         
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body { 
-            background-color: var(--bg-page); 
-            color: var(--text-main); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            min-height: 100vh;
-            padding: 60px 20px;
-            display: flex; flex-direction: column; align-items: center;
+        body {
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 0%, #0F172A 0%, var(--bg-deep) 80%);
+            color: var(--text-primary); font-family: 'Inter', sans-serif;
+            min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;
         }
-        
-        .container { width: 100%; max-width: 800px; }
-        
-        /* Executive Header */
-        header { text-align: center; margin-bottom: 50px; }
-        h1 { 
-            font-size: 3.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px;
-            color: var(--text-main);
-        }
-        .subtitle { color: var(--text-muted); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.5px; }
 
-        /* Clean Tab Navigation */
-        .nav-container {
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: 12px; padding: 8px; display: flex; justify-content: space-between;
-            margin-bottom: 40px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); flex-wrap: wrap; gap: 5px;
-        }
-        .tab-btn {
-            background: transparent; border: none; color: var(--text-muted);
-            padding: 14px 20px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s ease; flex: 1; text-align: center; min-width: 110px;
-        }
-        .tab-btn:hover { color: var(--text-main); background: #f1f5f9; }
-        .tab-btn.active { background: var(--primary); color: #ffffff; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+        /* Floating Particles Background */
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .particle { position: absolute; width: 3px; height: 3px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--neon-cyan); animation: float 15s infinite linear; opacity: 0.15; }
+        @keyframes float { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 0.5; } 100% { transform: translateY(-100px) scale(1); opacity: 0; } }
 
-        /* Premium Calculation Cards */
-        .calc-panel {
-            background: var(--bg-card); padding: 50px; border-radius: 20px; 
-            border: 1px solid var(--border-light); 
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); display: none;
-            animation: fadeIn 0.4s ease-out forwards;
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; width: 100%; padding: 15px 40px; 
+            background: rgba(5, 8, 20, 0.85); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 1000; border-bottom: 1px solid var(--border-glow);
         }
-        .calc-panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .brand { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; color: white; text-decoration: none; }
+        .brand span { color: var(--neon-blue); }
+        .nav-links { display: flex; gap: 20px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon-cyan); }
 
-        /* Spacious Inputs */
-        .input-group { margin-bottom: 28px; display: flex; flex-direction: column; width: 100%; }
-        .input-group label { color: var(--text-main); margin-bottom: 12px; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.5px; }
+        /* AI Command Terminal */
+        .ai-terminal-wrapper { max-width: 800px; margin: 40px auto 20px; padding: 0 20px; width: 100%; }
+        .ai-terminal {
+            background: rgba(0,0,0,0.6); border: 1px solid var(--neon-cyan); border-radius: 16px;
+            padding: 20px 25px; display: flex; align-items: center; box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+        }
+        .ai-terminal input {
+            background: transparent; border: none; color: var(--neon-cyan); font-family: 'Rajdhani', monospace;
+            font-size: 1.5rem; font-weight: 700; width: 100%; outline: none; margin-left: 15px;
+        }
+        .ai-terminal input::placeholder { color: rgba(0, 229, 255, 0.3); }
+
+        /* Dashboard Layout */
+        .app-container { max-width: 1400px; margin: 0 auto; padding: 20px; flex-grow: 1; display: grid; grid-template-columns: 300px 1fr 350px; gap: 25px; width: 100%; }
+        @media (max-width: 1100px) { .app-container { grid-template-columns: 1fr; } }
+
+        /* Glass Modules */
+        .glass-module {
+            background: var(--panel-glass); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glow); border-radius: 20px;
+            padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            position: relative; overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-menu { display: flex; flex-direction: column; gap: 10px; }
+        .menu-btn {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-glow); color: var(--text-dim);
+            padding: 15px 20px; border-radius: 12px; font-weight: 700; text-align: left;
+            cursor: pointer; transition: 0.3s; font-size: 1rem; display: flex; align-items: center; gap: 12px;
+        }
+        .menu-btn:hover { background: rgba(255,255,255,0.08); color: white; }
+        .menu-btn.active { background: rgba(59, 130, 246, 0.15); border-color: var(--neon-blue); color: var(--neon-cyan); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+
+        /* Tool Panels */
+        .tool-panel { display: none; animation: fadeIn 0.4s ease-out; }
+        .tool-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .panel-header { font-family: 'Rajdhani', sans-serif; font-size: 2rem; color: white; margin-bottom: 5px; font-weight: 800; }
+        .panel-desc { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* Inputs & Grids */
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr; } }
         
-        input[type="number"] {
-            width: 100%; padding: 18px 20px; border-radius: 10px; background: #ffffff; 
-            border: 1px solid #cbd5e1; color: var(--text-main); font-size: 1.15rem; 
-            outline: none; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.85rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+        .input-group input {
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+            color: white; padding: 16px; border-radius: 12px; font-size: 1.1rem; font-weight: 600; outline: none; transition: 0.3s;
         }
-        input[type="number"]:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
+        .input-group input:focus { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+
+        /* Smart Visual Output Box */
+        .smart-output {
+            background: rgba(0,0,0,0.4); border: 1px solid var(--border-glow);
+            border-radius: 16px; padding: 30px; text-align: center; margin-top: 10px;
+        }
+        .output-val { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 900; color: var(--neon-emerald); line-height: 1; margin-bottom: 10px; text-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+        .output-context { font-size: 0.95rem; color: var(--text-dim); font-weight: 600; }
+        .output-highlight { color: var(--neon-cyan); font-weight: 800; }
+
+        /* Visual Progress Bars */
+        .progress-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 15px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Standard Matrix Calculator */
+        .calc-matrix { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .calc-screen { grid-column: span 4; background: rgba(0,0,0,0.6); padding: 25px; border-radius: 12px; font-size: 2.5rem; text-align: right; font-family: 'Rajdhani', monospace; border: 1px solid var(--border-glow); margin-bottom: 10px; overflow-x: auto; color: white; }
+        .calc-btn { padding: 20px; font-size: 1.4rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border-glow); color: white; border-radius: 12px; cursor: pointer; transition: 0.2s; font-weight: 700; font-family: 'Rajdhani', sans-serif; }
+        .calc-btn:hover { background: rgba(255,255,255,0.1); }
+        .calc-btn:active { transform: scale(0.95); }
+        .btn-op { color: var(--neon-cyan); background: rgba(0, 229, 255, 0.05); border-color: rgba(0, 229, 255, 0.2); }
+        .btn-ac { color: var(--neon-crimson); background: rgba(239, 68, 68, 0.05); }
+        .btn-eq { grid-column: span 2; background: var(--neon-blue); color: white; border: none; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        .btn-eq:hover { background: #2563EB; }
+
+        /* History & Daily Tips Panel */
+        .history-panel { display: flex; flex-direction: column; gap: 15px; }
+        .history-item { background: rgba(0,0,0,0.3); border-left: 3px solid var(--neon-purple); padding: 15px; border-radius: 8px; font-size: 0.9rem; color: var(--text-dim); }
+        .history-item span { color: white; font-weight: 700; display: block; font-size: 1.1rem; margin-top: 5px; }
         
-        .dual-inputs { display: flex; gap: 24px; }
-        @media (max-width: 600px) { .dual-inputs { flex-direction: column; gap: 0; } }
+        .daily-tip { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; margin-top: auto; }
 
-        /* Professional Action Buttons */
-        .action-btn {
-            width: 100%; padding: 20px; background: var(--primary); border: none;
-            color: white; font-size: 1.1rem; font-weight: 700; letter-spacing: 1px;
-            border-radius: 10px; cursor: pointer; transition: all 0.2s ease; margin-top: 15px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-        }
-        .action-btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35); }
-        .action-btn:active { transform: translateY(0); }
-
-        /* High-Visibility Output Display */
-        .output-box {
-            margin-top: 40px; padding: 35px; background: var(--primary-bg); border-radius: 12px;
-            border: 1px solid #bfdbfe; border-left: 5px solid var(--primary); 
-            font-size: 2.2rem; text-align: center; color: #1e3a8a;
-            font-weight: 700; letter-spacing: -0.5px;
-        }
-        .status-text { font-size: 1.05rem; margin-top: 15px; font-weight: 600; letter-spacing: 0.5px; color: var(--text-muted); }
-
-        /* -------------------------------------------
-           Standard Matrix Calculator Grid (Apple-style)
-           ------------------------------------------- */
-        .calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-        .calc-display { 
-            grid-column: span 4; background: #f1f5f9; padding: 35px 25px; font-size: 3.5rem; 
-            text-align: right; border-radius: 12px; border: 1px solid var(--border-light); 
-            color: var(--text-main); font-weight: 400; letter-spacing: 1px; overflow-x: auto; margin-bottom: 25px; 
-        }
-        .grid-btn { 
-            padding: 24px 10px; font-size: 1.5rem; background: #ffffff; 
-            border: 1px solid var(--border-light); color: var(--text-main); border-radius: 10px; 
-            cursor: pointer; transition: all 0.1s ease; font-weight: 500; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .grid-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
-        .grid-btn:active { transform: scale(0.96); background: #e2e8f0; }
-        
-        .grid-btn.operator { color: var(--primary); background: var(--primary-bg); border-color: #bfdbfe; font-weight: 600; }
-        .grid-btn.danger { background: #fff1f2; color: var(--danger); border-color: #fecdd3; font-weight: 700; }
-        .grid-btn.equal { grid-column: span 2; background: var(--primary); color: white; border: none; font-weight: 700; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
-        .grid-btn.equal:hover { background: var(--primary-hover); }
+        footer { text-align: center; padding: 30px 20px; background: rgba(0,0,0,0.8); border-top: 1px solid var(--border-glow); font-size: 0.9rem; color: var(--text-dim); margin-top: auto; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; margin: 0 15px; transition: 0.2s; }
+        .footer-links a:hover { color: var(--neon-cyan); }
 
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>NexusCalc</h1>
-            <div class="subtitle">Professional Grade Analytics Suite</div>
-        </header>
+    <div class="particles" id="particles"></div>
 
-        <div class="nav-container">
-            <button class="tab-btn active" onclick="switchTab('standard', this)">Standard</button>
-            <button class="tab-btn" onclick="switchTab('academic', this)">Academic</button>
-            <button class="tab-btn" onclick="switchTab('commercial', this)">Commercial</button>
-            <button class="tab-btn" onclick="switchTab('bmi', this)">Biometrics</button>
-            <button class="tab-btn" onclick="switchTab('sip', this)">Wealth (SIP)</button>
+    <nav>
+        <a href="index.html" class="brand">NEXUS<span>CALC</span></a>
+        <div class="nav-links">
+            <a href="index.html" style="color: var(--neon-blue);">Tools Hub</a>
+            <a href="insights.html">Insights & Data</a>
         </div>
+    </nav>
 
-        <div id="standard" class="calc-panel active">
-            <div class="calc-display" id="calcScreen">0</div>
-            <div class="calc-grid">
-                <button class="grid-btn danger" onclick="clearScreen()">AC</button>
-                <button class="grid-btn operator" onclick="deleteLast()">DEL</button>
-                <button class="grid-btn operator" onclick="appendValue('/')">÷</button>
-                <button class="grid-btn operator" onclick="appendValue('*')">×</button>
+    <div class="ai-terminal-wrapper">
+        <div class="ai-terminal">
+            <span style="font-size: 1.5rem; color: var(--neon-cyan);">⚡</span>
+            <input type="text" id="aiInput" placeholder="AI Assistant: Type '15% of 8500' or '25 * 40'..." autocomplete="off">
+        </div>
+        <div id="aiOutput" style="display: none; text-align: center; color: var(--neon-emerald); font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 800; margin-top: 15px; text-shadow: 0 0 10px rgba(16,185,129,0.3);"></div>
+    </div>
+
+    <div class="app-container">
+        
+        <aside class="glass-module" style="height: fit-content;">
+            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 800; text-transform: uppercase;">Intelligence Hub</h3>
+            <div class="sidebar-menu">
+                <button class="menu-btn active" onclick="switchPanel('standard', this)">🧮 Standard Matrix</button>
+                <button class="menu-btn" onclick="switchPanel('finance', this)">💰 Wealth & SIP (Crorepati)</button>
+                <button class="menu-btn" onclick="switchPanel('student', this)">🎓 Academic & Attendance</button>
+                <button class="menu-btn" onclick="switchPanel('emi', this)">🏦 EMI & Loan Analyzer</button>
+                <button class="menu-btn" onclick="switchPanel('health', this)">🏥 Biometrics (BMI)</button>
+            </div>
+        </aside>
+
+        <main class="glass-module">
+            
+            <div id="standard" class="tool-panel active">
+                <div class="panel-header">Standard Matrix</div>
+                <div class="panel-desc">Execute rapid arithmetic operations with precision.</div>
                 
-                <button class="grid-btn" onclick="appendValue('7')">7</button>
-                <button class="grid-btn" onclick="appendValue('8')">8</button>
-                <button class="grid-btn" onclick="appendValue('9')">9</button>
-                <button class="grid-btn operator" onclick="appendValue('-')">−</button>
+                <div class="calc-screen" id="calcScreen">0</div>
+                <div class="calc-matrix">
+                    <button class="calc-btn btn-ac" onclick="clearScreen()">AC</button>
+                    <button class="calc-btn btn-op" onclick="deleteLast()">DEL</button>
+                    <button class="calc-btn btn-op" onclick="appendValue('/')">÷</button>
+                    <button class="calc-btn btn-op" onclick="appendValue('*')">×</button>
+                    
+                    <button class="calc-btn" onclick="appendValue('7')">7</button>
+                    <button class="calc-btn" onclick="appendValue('8')">8</button>
+                    <button class="calc-btn" onclick="appendValue('9')">9</button>
+                    <button class="calc-btn btn-op" onclick="appendValue('-')">−</button>
+                    
+                    <button class="calc-btn" onclick="appendValue('4')">4</button>
+                    <button class="calc-btn" onclick="appendValue('5')">5</button>
+                    <button class="calc-btn" onclick="appendValue('6')">6</button>
+                    <button class="calc-btn btn-op" onclick="appendValue('+')">+</button>
+                    
+                    <button class="calc-btn" onclick="appendValue('1')">1</button>
+                    <button class="calc-btn" onclick="appendValue('2')">2</button>
+                    <button class="calc-btn" onclick="appendValue('3')">3</button>
+                    <button class="calc-btn btn-eq" onclick="calculateResult()">=</button>
+                    
+                    <button class="calc-btn" onclick="appendValue('0')" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn" onclick="appendValue('.')">•</button>
+                </div>
+            </div>
+
+            <div id="finance" class="tool-panel">
+                <div class="panel-header">Wealth Projector (SIP)</div>
+                <div class="panel-desc">Calculate compound interest and track your path to ₹1 Crore. Data syncs live.</div>
                 
-                <button class="grid-btn" onclick="appendValue('4')">4</button>
-                <button class="grid-btn" onclick="appendValue('5')">5</button>
-                <button class="grid-btn" onclick="appendValue('6')">6</button>
-                <button class="grid-btn operator" onclick="appendValue('+')">+</button>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Monthly Investment (₹)</label>
+                        <input type="number" id="sipAmount" value="5000">
+                    </div>
+                    <div class="input-group">
+                        <label>Expected Return (%)</label>
+                        <input type="number" id="sipRate" value="12">
+                    </div>
+                    <div class="input-group" style="grid-column: span 2;">
+                        <label>Time Horizon (Years)</label>
+                        <input type="number" id="sipYears" value="15">
+                    </div>
+                </div>
+
+                <div class="smart-output">
+                    <div class="output-val" id="sipTotal">₹0</div>
+                    <div class="output-context">
+                        Total Invested: <span class="output-highlight" id="sipInvested">₹0</span> | 
+                        Wealth Gained: <span style="color:var(--neon-emerald); font-weight:800;" id="sipProfit">₹0</span>
+                    </div>
+                    
+                    <div style="margin-top: 25px; text-align: left;">
+                        <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--text-dim); font-weight:700; text-transform:uppercase;">
+                            <span>Current Trajectory</span>
+                            <span>Target: ₹1 Crore</span>
+                        </div>
+                        <div class="progress-bg"><div class="progress-fill" id="croreBar"></div></div>
+                        <div id="croreText" style="color:var(--neon-amber); font-size:0.85rem; font-weight:700; margin-top:8px; text-align:center;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="student" class="tool-panel">
+                <div class="panel-header">Academic Matrix</div>
+                <div class="panel-desc">Attendance tracker with Safe-Bunk predictability logic.</div>
                 
-                <button class="grid-btn" onclick="appendValue('1')">1</button>
-                <button class="grid-btn" onclick="appendValue('2')">2</button>
-                <button class="grid-btn" onclick="appendValue('3')">3</button>
-                <button class="grid-btn equal" onclick="calculateResult()">=</button>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Total Classes Conducted</label>
+                        <input type="number" id="attTotal" value="100">
+                    </div>
+                    <div class="input-group">
+                        <label>Classes Attended</label>
+                        <input type="number" id="attPresent" value="85">
+                    </div>
+                </div>
+
+                <div class="smart-output">
+                    <div class="output-val" id="attPercent">0%</div>
+                    <div class="progress-bg" style="margin-bottom: 20px;"><div class="progress-fill" id="attBar" style="background:var(--neon-purple);"></div></div>
+                    <div class="output-context" id="attLogicText">Enter data to compute matrix.</div>
+                </div>
+            </div>
+
+            <div id="emi" class="tool-panel">
+                <div class="panel-header">Loan Analyzer (EMI)</div>
+                <div class="panel-desc">Evaluate monthly liabilities and total interest bleed.</div>
                 
-                <button class="grid-btn" onclick="appendValue('0')" style="grid-column: span 2;">0</button>
-                <button class="grid-btn" onclick="appendValue('.')">•</button>
-            </div>
-        </div>
+                <div class="input-grid">
+                    <div class="input-group" style="grid-column: span 2;">
+                        <label>Principal Loan Amount (₹)</label>
+                        <input type="number" id="emiPrincipal" value="1000000">
+                    </div>
+                    <div class="input-group">
+                        <label>Interest Rate (% p.a.)</label>
+                        <input type="number" id="emiRate" value="8.5">
+                    </div>
+                    <div class="input-group">
+                        <label>Tenure (Years)</label>
+                        <input type="number" id="emiYears" value="5">
+                    </div>
+                </div>
 
-        <div id="academic" class="calc-panel">
-            <div class="dual-inputs">
-                <div class="input-group">
-                    <label>Total Marks Obtained</label>
-                    <input type="number" id="marksObtained" placeholder="e.g. 450">
-                </div>
-                <div class="input-group">
-                    <label>Maximum Possible Marks</label>
-                    <input type="number" id="marksTotal" placeholder="e.g. 500">
+                <div class="smart-output">
+                    <div class="output-context" style="margin-bottom: 10px; text-transform: uppercase;">Monthly EMI Liability</div>
+                    <div class="output-val" id="emiMonthly" style="color: var(--neon-crimson); text-shadow: 0 0 15px rgba(239, 68, 68, 0.3);">₹0</div>
+                    <div class="output-context">
+                        Total Interest Bleed: <span class="output-highlight" style="color:var(--neon-crimson);" id="emiInterest">₹0</span>
+                    </div>
                 </div>
             </div>
-            <button class="action-btn" onclick="calcAcademic()">Evaluate Academic Profile</button>
-            <div class="output-box" id="academicOutput">
-                Ready to Compute
-                <div class="status-text">Enter your academic data above</div>
-            </div>
-        </div>
 
-        <div id="commercial" class="calc-panel">
-            <div class="input-group">
-                <label>Original Product Price (₹)</label>
-                <input type="number" id="origPrice" placeholder="e.g. 2999">
-            </div>
-            <div class="dual-inputs">
-                <div class="input-group">
-                    <label>Discount Applied (%)</label>
-                    <input type="number" id="discPercent" placeholder="e.g. 20">
+            <div id="health" class="tool-panel">
+                <div class="panel-header">Biometric Scanner (BMI)</div>
+                <div class="panel-desc">Real-time physiological mass index categorization.</div>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Height (Centimeters)</label>
+                        <input type="number" id="bmiH" value="175">
+                    </div>
+                    <div class="input-group">
+                        <label>Weight (Kilograms)</label>
+                        <input type="number" id="bmiW" value="70">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Sales Tax / GST (%)</label>
-                    <input type="number" id="taxPercent" placeholder="e.g. 18">
-                </div>
-            </div>
-            <button class="action-btn" onclick="calcCommercial()">Calculate Final Value</button>
-            <div class="output-box" id="commercialOutput">
-                Ready to Compute
-                <div class="status-text">Enter commercial data above</div>
-            </div>
-        </div>
 
-        <div id="bmi" class="calc-panel">
-            <div class="dual-inputs">
-                <div class="input-group">
-                    <label>Body Height (Centimeters)</label>
-                    <input type="number" id="bmiHeight" placeholder="e.g. 180">
-                </div>
-                <div class="input-group">
-                    <label>Body Weight (Kilograms)</label>
-                    <input type="number" id="bmiWeight" placeholder="e.g. 75">
+                <div class="smart-output">
+                    <div class="output-val" id="bmiScore" style="color: var(--neon-blue);">0.0</div>
+                    <div class="output-context" id="bmiText" style="font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-top: 10px;">Awaiting Data</div>
                 </div>
             </div>
-            <button class="action-btn" onclick="calcBMI()">Analyze Biometrics</button>
-            <div class="output-box" id="bmiOutput">
-                Ready to Compute
-                <div class="status-text">Enter biometric data above</div>
-            </div>
-        </div>
 
-        <div id="sip" class="calc-panel">
-            <div class="input-group">
-                <label>Monthly Investment Amount (₹)</label>
-                <input type="number" id="sipAmount" placeholder="e.g. 10000">
+        </main>
+
+        <aside class="glass-module" style="display: flex; flex-direction: column;">
+            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 800; text-transform: uppercase;">Session Log</h3>
+            <div class="history-panel" id="historyLog">
+                <div class="history-item">System Initialized<span>Awaiting computations...</span></div>
             </div>
-            <div class="dual-inputs">
-                <div class="input-group">
-                    <label>Expected Annual Return (%)</label>
-                    <input type="number" id="sipRate" placeholder="e.g. 12.5">
-                </div>
-                <div class="input-group">
-                    <label>Investment Tenure (Years)</label>
-                    <input type="number" id="sipYears" placeholder="e.g. 15">
-                </div>
+
+            <div class="daily-tip">
+                <h4 style="color: var(--neon-amber); font-weight: 800; margin-bottom: 8px; font-size: 0.9rem; text-transform: uppercase;">💡 Financial Intel</h4>
+                <p style="color: #D1D5DB; font-size: 0.85rem; line-height: 1.6;">Increasing your SIP by just 10% annually (Step-Up SIP) can reduce your time to hit ₹1 Crore by up to 4 years due to compounding velocity.</p>
             </div>
-            <button class="action-btn" onclick="calcSIP()">Project Wealth Growth</button>
-            <div class="output-box" id="sipOutput">
-                Ready to Compute
-                <div class="status-text">Enter financial parameters above</div>
-            </div>
-        </div>
+        </aside>
 
     </div>
 
-    <script>
-        // --- SEAMLESS TAB NAVIGATION ---
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.calc-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        // --- 1. STANDARD CALCULATOR LOGIC ---
-        const screen = document.getElementById('calcScreen');
-        let currentExpression = '';
-
-        function appendValue(val) {
-            if (screen.innerText === '0' && val !== '.') { currentExpression = val; } 
-            else { currentExpression += val; }
-            screen.innerText = currentExpression;
-        }
-
-        function clearScreen() { currentExpression = ''; screen.innerText = '0'; }
-
-        function deleteLast() {
-            currentExpression = currentExpression.slice(0, -1);
-            screen.innerText = currentExpression === '' ? '0' : currentExpression;
-        }
-
-        function calculateResult() {
-            try {
-                let formattedExpression = currentExpression.replace(/[^-()\d/*+.]/g, '');
-                const result = new Function('return ' + formattedExpression)();
-                screen.innerText = Number.isInteger(result) ? result : parseFloat(result.toFixed(6));
-                currentExpression = screen.innerText;
-            } catch (error) {
-                screen.innerText = 'Error'; currentExpression = '';
-            }
-        }
-
-        // --- 2. ACADEMIC ENGINE LOGIC ---
-        function calcAcademic() {
-            const obtained = parseFloat(document.getElementById('marksObtained').value);
-            const total = parseFloat(document.getElementById('marksTotal').value);
-            const out = document.getElementById('academicOutput');
-
-            if (!obtained || !total || obtained < 0 || total <= 0 || obtained > total) {
-                out.innerHTML = `<span style="color: var(--danger);">Input Error</span><div class="status-text">Please verify your marks are entered correctly.</div>`;
-                return;
-            }
-
-            const percentage = (obtained / total) * 100;
-            const cgpa = (percentage / 9.5).toFixed(2); 
-            
-            let grade = '', color = '';
-            if(percentage >= 90) { grade = 'A+ (Distinction)'; color = 'var(--success)'; }
-            else if(percentage >= 80) { grade = 'A (Excellent)'; color = 'var(--primary)'; }
-            else if(percentage >= 70) { grade = 'B (Very Good)'; color = '#84cc16'; }
-            else if(percentage >= 60) { grade = 'C (Good)'; color = 'var(--warning)'; }
-            else if(percentage >= 40) { grade = 'D (Pass)'; color = '#f97316'; }
-            else { grade = 'F (Fail)'; color = 'var(--danger)'; }
-
-            out.innerHTML = `
-                ${percentage.toFixed(2)}%
-                <div style="font-size: 1.2rem; color: #475569; margin-top: 5px;">Estimated CGPA: ${cgpa}</div>
-                <div class="status-text" style="color: ${color}; font-weight: 700;">Academic Standing: ${grade}</div>
-            `;
-        }
-
-        // --- 3. COMMERCIAL ENGINE LOGIC ---
-        function calcCommercial() {
-            const price = parseFloat(document.getElementById('origPrice').value);
-            const disc = parseFloat(document.getElementById('discPercent').value) || 0;
-            const tax = parseFloat(document.getElementById('taxPercent').value) || 0;
-            const out = document.getElementById('commercialOutput');
-
-            if (!price || price <= 0) {
-                out.innerHTML = `<span style="color: var(--danger);">Input Error</span><div class="status-text">Enter a valid base price.</div>`;
-                return;
-            }
-
-            const discountAmount = price * (disc / 100);
-            const discountedPrice = price - discountAmount;
-            const taxAmount = discountedPrice * (tax / 100);
-            const finalPrice = discountedPrice + taxAmount;
-
-            out.innerHTML = `
-                ₹${finalPrice.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
-                <div class="status-text" style="color: var(--success);">
-                    Discount Saved: ₹${discountAmount.toFixed(2)} &nbsp;|&nbsp; Tax Applied: ₹${taxAmount.toFixed(2)}
-                </div>
-            `;
-        }
-
-        // --- 4. BIOMETRIC SCANNER LOGIC ---
-        function calcBMI() {
-            const h = parseFloat(document.getElementById('bmiHeight').value);
-            const w = parseFloat(document.getElementById('bmiWeight').value);
-            const out = document.getElementById('bmiOutput');
-
-            if (!h || !w || h <= 0 || w <= 0) {
-                out.innerHTML = `<span style="color: var(--danger);">Scan Failed</span><div class="status-text">Enter valid height and weight.</div>`;
-                return;
-            }
-
-            const meters = h / 100;
-            const bmi = (w / (meters * meters)).toFixed(1);
-            
-            let statusMsg = '', color = '';
-            if (bmi < 18.5) { statusMsg = "Underweight Classification"; color = "var(--warning)"; } 
-            else if (bmi <= 24.9) { statusMsg = "Optimal Health Range"; color = "var(--success)"; } 
-            else if (bmi <= 29.9) { statusMsg = "Overweight Classification"; color = "#f97316"; } 
-            else { statusMsg = "High Risk (Obese)"; color = "var(--danger)"; }
-
-            out.innerHTML = `
-                ${bmi} <span style="font-size: 1.1rem; color: var(--text-muted);">kg/m²</span>
-                <div class="status-text" style="color: ${color}; font-weight: 700;">Medical Status: ${statusMsg}</div>
-            `;
-        }
-
-        // --- 5. WEALTH PROJECTOR LOGIC ---
-        function calcSIP() {
-            const p = parseFloat(document.getElementById('sipAmount').value);
-            const r = parseFloat(document.getElementById('sipRate').value);
-            const t = parseFloat(document.getElementById('sipYears').value);
-            const out = document.getElementById('sipOutput');
-
-            if (!p || !r || !t || p <= 0 || r <= 0 || t <= 0) {
-                out.innerHTML = `<span style="color: var(--danger);">Projection Failed</span><div class="status-text">Enter valid financial parameters.</div>`;
-                return;
-            }
-
-            const i = (r / 100) / 12;
-            const n = t * 12;
-            const futureValue = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
-            const totalInvested = p * n;
-            const profit = futureValue - totalInvested;
-
-            const format = (num) => "₹" + Math.round(num).toLocaleString('en-IN');
-
-            out.innerHTML = `
-                ${format(futureValue)}
-                <div class="status-text" style="color: var(--text-muted);">
-                    Invested: <span style="color: var(--text-main); font-weight: 700;">${format(totalInvested)}</span> &nbsp;|&nbsp; 
-                    Est. Profit: <span style="color: var(--success); font-weight: 700;">${format(profit)}</span>
-                </div>
-            `;
-        }
-    </script>
-        <section style="background-color: #ffffff; border-top: 1px solid #e2e8f0; padding: 60px 40px; width: 100%; margin-top: 50px;">
-        <div style="max-width: 1000px; margin: 0 auto; color: #475569; font-family: sans-serif;">
-            <h2 style="color: #0f172a; font-size: 2rem; margin-bottom: 30px; text-align: center; font-weight: 800;">Everyday Analytics & Financial Intelligence</h2>
-            
-            <div style="margin-bottom: 40px;">
-                <h3 style="color: #1e293b; font-size: 1.4rem; margin-bottom: 15px;">The Magic of Compound Interest (SIP & Wealth)</h3>
-                <p style="line-height: 1.8; margin-bottom: 15px;">Financial literacy begins with understanding the exponential power of compound interest over time. A Systematic Investment Plan (SIP) allows individuals to consistently invest small amounts into mutual funds or market indices. Our advanced Wealth Projector helps users visualize exactly how time in the market—combined with expected annual return rates—can transform standard monthly savings into massive long-term capital.</p>
-            </div>
-
-            <div style="margin-bottom: 40px;">
-                <h3 style="color: #1e293b; font-size: 1.4rem; margin-bottom: 15px;">Understanding Biometric Baselines</h3>
-                <p style="line-height: 1.8; margin-bottom: 15px;">The Body Mass Index (BMI) is a foundational biometric tool used globally by medical professionals to quickly assess health categories. While it does not account for muscle mass versus fat density, maintaining an optimal BMI baseline is statistically linked to a lower risk of chronic metabolic conditions. Our integrated scanner provides instant, color-coded health categorization based on standard global medical thresholds.</p>
-            </div>
-
-            <div style="margin-bottom: 40px;">
-                <h3 style="color: #1e293b; font-size: 1.4rem; margin-bottom: 15px;">Academic & Commercial Precision</h3>
-                <p style="line-height: 1.8;">Whether converting raw examination marks into standardized CGPA formats for university applications or instantly calculating post-tax commercial discounts during major retail sales, having a multi-variable engine saves time and prevents costly errors. NexusCalc centralizes these daily mathematical requirements into one seamless, high-speed interface.</p>
-            </div>
+    <footer>
+        <div class="footer-links" style="margin-bottom: 15px;">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
         </div>
-    </section>
-
-    <footer style="text-align: center; padding: 40px 20px; background-color: #0f172a; color: #94a3b8; font-size: 0.95rem; font-family: sans-serif; border-top: 4px solid #3b82f6;">
-        <div style="margin-bottom: 15px;">
-            <a href="privacy.html" style="color: #f8fafc; text-decoration: none; margin: 0 15px; font-weight: 500;">Privacy Policy</a> | 
-            <a href="terms.html" style="color: #f8fafc; text-decoration: none; margin: 0 15px; font-weight: 500;">Terms of Service</a> | 
-            <a href="mailto:contact@astraforage.in" style="color: #f8fafc; text-decoration: none; margin: 0 15px; font-weight: 500;">Contact Us</a>
-        </div>
-        <p>&copy; 2026 NexusCalc & AstraForge Analytics. All rights reserved.</p>
+        <p>&copy; 2026 NexusCalc Analytics Hub. All rights reserved.</p>
     </footer>
 
+    <script>
+        // --- 1. Background Particles ---
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i=0; i<30; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // --- 2. Tab Navigation ---
+        function switchPanel(panelId, btnElement) {
+            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // --- 3. History Logger ---
+        function logHistory(title, value) {
+            const historyLog = document.getElementById('historyLog');
+            // Keep only last 3 logs
+            if(historyLog.children.length >= 4) historyLog.removeChild(historyLog.lastChild);
+            
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `${title}<span>${value}</span>`;
+            historyLog.prepend(item);
+        }
+
+        // --- 4. AI Command Terminal (NLP Parser) ---
+        document.getElementById('aiInput').addEventListener('input', function(e) {
+            const val = e.target.value.toLowerCase();
+            const out = document.getElementById('aiOutput');
+            
+            if(val.length < 3) { out.style.display = 'none'; return; }
+
+            try {
+                // Parse "X% of Y"
+                let percMatch = val.match(/(\d+(?:\.\d+)?)\s*%\s*of\s*(\d+(?:\.\d+)?)/);
+                if (percMatch) {
+                    let result = (parseFloat(percMatch[1]) / 100) * parseFloat(percMatch[2]);
+                    out.innerText = `= ${result.toLocaleString('en-IN')}`;
+                    out.style.display = 'block';
+                    return;
+                }
+
+                // Parse basic math via sanitized eval
+                let mathStr = val.replace(/[^-()\d/*+.]/g, '');
+                if(mathStr.length > 2 && /[+\-*/]/.test(mathStr)) {
+                    let result = new Function('return ' + mathStr)();
+                    out.innerText = `= ${Number.isInteger(result) ? result : parseFloat(result.toFixed(4)).toLocaleString('en-IN')}`;
+                    out.style.display = 'block';
+                    return;
+                }
+                out.style.display = 'none';
+            } catch (err) { out.style.display = 'none'; }
+        });
+
+        document.getElementById('aiInput').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                const out = document.getElementById('aiOutput');
+                if(out.style.display === 'block') {
+                    logHistory("AI Terminal Sync", out.innerText);
+                    e.target.value = ''; out.style.display = 'none';
+                }
+            }
+        });
+
+        // --- 5. Standard Matrix ---
+        const screen = document.getElementById('calcScreen');
+        let currentExp = '';
+
+        function appendValue(val) {
+            if (screen.innerText === '0' && val !== '.') currentExp = val;
+            else currentExp += val;
+            screen.innerText = currentExp;
+        }
+        function clearScreen() { currentExp = ''; screen.innerText = '0'; }
+        function deleteLast() {
+            currentExp = currentExp.slice(0, -1);
+            screen.innerText = currentExp === '' ? '0' : currentExp;
+        }
+        function calculateResult() {
+            try {
+                let formatted = currentExp.replace(/[^-()\d/*+.]/g, '');
+                let result = new Function('return ' + formatted)();
+                let finalVal = Number.isInteger(result) ? result : parseFloat(result.toFixed(6));
+                screen.innerText = finalVal;
+                currentExp = screen.innerText;
+                logHistory("Standard Matrix", finalVal);
+            } catch (error) { screen.innerText = 'Error'; currentExp = ''; }
+        }
+
+        // --- 6. Live Calculation Engine (Attaches to all inputs) ---
+        const formatCurrency = (num) => "₹" + Math.round(num).toLocaleString('en-IN');
+
+        // Wealth Projector (SIP)
+        function calculateSIPLive() {
+            let p = parseFloat(document.getElementById('sipAmount').value) || 0;
+            let r = parseFloat(document.getElementById('sipRate').value) || 0;
+            let t = parseFloat(document.getElementById('sipYears').value) || 0;
+
+            if(p===0 || r===0 || t===0) return;
+
+            let i = (r / 100) / 12;
+            let n = t * 12;
+            let fv = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+            let inv = p * n;
+
+            document.getElementById('sipTotal').innerText = formatCurrency(fv);
+            document.getElementById('sipInvested').innerText = formatCurrency(inv);
+            document.getElementById('sipProfit').innerText = formatCurrency(fv - inv);
+
+            // Crorepati Logic
+            let crorePerc = Math.min(100, (fv / 10000000) * 100);
+            document.getElementById('croreBar').style.width = crorePerc + '%';
+            
+            if(fv >= 10000000) {
+                document.getElementById('croreText').innerText = "Target Achieved! 🏆 (1 Crore+ Bracket)";
+                document.getElementById('croreText').style.color = "var(--neon-emerald)";
+            } else {
+                // Calculate years to 1 Crore mathematically
+                let target = 10000000;
+                let monthsToCrore = Math.log((target * i) / (p * (1 + i)) + 1) / Math.log(1 + i);
+                let yearsToCrore = (monthsToCrore / 12).toFixed(1);
+                document.getElementById('croreText').innerText = `Trajectory: You will hit ₹1 Crore in ${yearsToCrore} years.`;
+                document.getElementById('croreText').style.color = "var(--neon-amber)";
+            }
+        }
+        ['sipAmount', 'sipRate', 'sipYears'].forEach(id => document.getElementById(id).addEventListener('input', calculateSIPLive));
+
+        // Academic / Attendance Predictor
+        function calculateAttendanceLive() {
+            let total = parseInt(document.getElementById('attTotal').value) || 0;
+            let present = parseInt(document.getElementById('attPresent').value) || 0;
+            let outText = document.getElementById('attLogicText');
+            
+            if(total === 0 || present > total) { outText.innerText = "Invalid matrix parameters."; return; }
+
+            let perc = (present / total) * 100;
+            document.getElementById('attPercent').innerText = perc.toFixed(1) + "%";
+            document.getElementById('attBar').style.width = perc + "%";
+
+            if (perc >= 75) {
+                document.getElementById('attPercent').style.color = "var(--neon-emerald)";
+                // How many can I bunk? Math: (present) / (total + x) = 0.75 --> present = 0.75*total + 0.75x --> x = (present - 0.75*total) / 0.75
+                // Wait, bunking means total increases but present stays same? No, in India usually total is fixed or you calculate future bunks out of current total.
+                // Assuming "If no more classes are held, how many could you have bunked?" = present - (0.75 * total).
+                let bunks = Math.floor(present - (0.75 * total));
+                outText.innerHTML = `Safe Zone Verified. You can mathematically afford to <span class="output-highlight">skip ${bunks} classes</span> and maintain 75%.`;
+            } else {
+                document.getElementById('attPercent').style.color = "var(--neon-crimson)";
+                // How many do I need to attend consecutively? Math: (present + x) / (total + x) = 0.75 --> present + x = 0.75*total + 0.75x --> 0.25x = 0.75*total - present
+                let req = Math.ceil((0.75 * total - present) / 0.25);
+                outText.innerHTML = `Warning. You must attend <span style="color:var(--neon-crimson); font-weight:800;">${req} consecutive classes</span> to reach 75%.`;
+            }
+        }
+        ['attTotal', 'attPresent'].forEach(id => document.getElementById(id).addEventListener('input', calculateAttendanceLive));
+
+        // EMI Analyzer
+        function calculateEMILive() {
+            let p = parseFloat(document.getElementById('emiPrincipal').value) || 0;
+            let r = parseFloat(document.getElementById('emiRate').value) || 0;
+            let y = parseFloat(document.getElementById('emiYears').value) || 0;
+
+            if(p===0 || r===0 || y===0) return;
+
+            let i = r / 12 / 100;
+            let n = y * 12;
+            let emi = p * i * (Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1));
+            let totalAmt = emi * n;
+            let totalInt = totalAmt - p;
+
+            document.getElementById('emiMonthly').innerText = formatCurrency(emi);
+            document.getElementById('emiInterest').innerText = formatCurrency(totalInt);
+        }
+        ['emiPrincipal', 'emiRate', 'emiYears'].forEach(id => document.getElementById(id).addEventListener('input', calculateEMILive));
+
+        // Biometric (BMI)
+        function calculateBMILive() {
+            let h = parseFloat(document.getElementById('bmiH').value) || 0;
+            let w = parseFloat(document.getElementById('bmiW').value) || 0;
+
+            if(h===0 || w===0) return;
+
+            let meters = h / 100;
+            let bmi = (w / (meters * meters)).toFixed(1);
+            
+            document.getElementById('bmiScore').innerText = bmi;
+            let status = document.getElementById('bmiText');
+            
+            if (bmi < 18.5) { status.innerText = "Underweight"; status.style.color = "var(--neon-amber)"; }
+            else if (bmi <= 24.9) { status.innerText = "Optimal Range"; status.style.color = "var(--neon-emerald)"; }
+            else if (bmi <= 29.9) { status.innerText = "Overweight"; status.style.color = "var(--neon-amber)"; }
+            else { status.innerText = "High Risk (Obese)"; status.style.color = "var(--neon-crimson)"; }
+        }
+        ['bmiH', 'bmiW'].forEach(id => document.getElementById(id).addEventListener('input', calculateBMILive));
+
+        // Initialize Live Scripts
+        setTimeout(() => {
+            calculateSIPLive(); calculateAttendanceLive(); calculateEMILive(); calculateBMILive();
+        }, 500);
+
+    </script>
 </body>
 </html>
