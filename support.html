@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5HVBHX1KDW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5HVBHX1KDW');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support and Help Center for NexusCalc Analytics Hub. Contact our team for technical assistance or calculation inquiries.">
+    <title>NexusCalc | Support Command</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495090071076386" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Elite Dark Glassmorphism Theme */
+        :root {
+            --bg-deep: #050814; 
+            --panel-glass: rgba(13, 17, 28, 0.65);
+            --neon-blue: #3B82F6; --neon-cyan: #00E5FF;
+            --neon-emerald: #10B981; --neon-crimson: #EF4444;
+            --neon-amber: #F59E0B; --neon-purple: #8B5CF6;
+            --text-primary: #F8FAFC; --text-dim: #94A3B8; 
+            --border-glow: rgba(255, 255, 255, 0.08);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at 50% 0%, #0F172A 0%, var(--bg-deep) 80%);
+            color: var(--text-primary); font-family: 'Inter', sans-serif;
+            min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;
+        }
+
+        /* Floating Particles Background */
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .particle { position: absolute; width: 3px; height: 3px; background: var(--neon-blue); border-radius: 50%; box-shadow: 0 0 10px var(--neon-blue); animation: float 15s infinite linear; opacity: 0.15; }
+        @keyframes float { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 0.5; } 100% { transform: translateY(-100px) scale(1); opacity: 0; } }
+
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; width: 100%; padding: 15px 40px; 
+            background: rgba(5, 8, 20, 0.85); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 1000; border-bottom: 1px solid var(--border-glow);
+        }
+        .brand { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; color: white; text-decoration: none; }
+        .brand span { color: var(--neon-blue); }
+        .nav-links { display: flex; gap: 20px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: var(--neon-cyan); }
+
+        /* Hero Section */
+        .hero { padding: 80px 20px 40px; text-align: center; }
+        .hero h1 { font-family: 'Rajdhani', sans-serif; font-size: 3.5rem; font-weight: 900; background: linear-gradient(90deg, #fff, #94A3B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
+        .hero p { color: var(--text-dim); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Support Grid Container */
+        .support-container {
+            max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; width: 100%;
+        }
+
+        /* Glassmorphism Cards */
+        .support-card {
+            background: var(--panel-glass); backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glow); border-radius: 20px;
+            padding: 40px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        .support-card h2 { font-family: 'Rajdhani', sans-serif; font-size: 2rem; color: white; margin-bottom: 30px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Contact Form Styles */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .form-control {
+            width: 100%; padding: 16px 20px; background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            color: white; font-size: 1.05rem; font-family: 'Inter', sans-serif;
+            outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        textarea.form-control { resize: vertical; min-height: 150px; }
+
+        .submit-btn {
+            width: 100%; padding: 18px; background: var(--neon-blue); color: white;
+            font-weight: 800; border: none; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; font-family: 'Rajdhani', sans-serif;
+        }
+        .submit-btn:hover { background: #2563EB; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); transform: translateY(-2px); }
+
+        /* FAQ Section Styles */
+        .faq-item { margin-bottom: 25px; border-bottom: 1px solid var(--border-glow); padding-bottom: 20px; }
+        .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .faq-question { color: white; font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; display: flex; align-items: flex-start; gap: 10px; }
+        .faq-question::before { content: "Q:"; color: var(--neon-cyan); font-weight: 900; font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; }
+        .faq-answer { color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; padding-left: 30px; }
+
+        .email-direct {
+            display: inline-block; margin-top: 30px; padding: 15px 25px;
+            background: rgba(59, 130, 246, 0.1); border: 1px solid var(--neon-blue);
+            border-radius: 12px; color: var(--neon-cyan); font-weight: 700; text-decoration: none; transition: 0.3s; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+        }
+        .email-direct:hover { background: rgba(59, 130, 246, 0.2); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px 20px; background: rgba(0,0,0,0.8); border-top: 1px solid var(--border-glow); font-size: 0.9rem; color: var(--text-dim); margin-top: auto; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; margin: 0 15px; transition: 0.2s; }
+        .footer-links a:hover { color: var(--neon-cyan); }
+
+        @media (max-width: 900px) {
+            .support-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <nav>
+        <a href="index.html" class="brand">NEXUS<span>CALC</span></a>
+        <div class="nav-links">
+            <a href="index.html">Tools Hub</a>
+            <a href="insights.html">Insights & Data</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Support Command</h1>
+        <p>Technical assistance, algorithm documentation, and direct operational support for the NexusCalc terminal.</p>
+    </section>
+
+    <div class="support-container">
+        
+        <div class="support-card">
+            <h2>Initialize Transmission</h2>
+            <form action="mailto:contact@astraforage.in" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">System ID / Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Return Protocol / Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="user@domain.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Query Classification</label>
+                    <select id="subject" name="subject" class="form-control" style="cursor: pointer;">
+                        <option value="Algorithm/Math Error" style="background:#0F172A; color:white;">Algorithm / Math Error</option>
+                        <option value="Feature Request" style="background:#0F172A; color:white;">Tool Feature Request</option>
+                        <option value="Partnership Inquiry" style="background:#0F172A; color:white;">Partnership Inquiry</option>
+                        <option value="General Support" style="background:#0F172A; color:white;">General Support</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Transmission Payload</label>
+                    <textarea id="message" name="message" class="form-control" placeholder="Detail your operational query here..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Transmit Data</button>
+            </form>
+        </div>
+
+        <div class="support-card">
+            <h2>System Protocols (FAQ)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does the Safe-Bunk algorithm calculate attendance?</div>
+                <div class="faq-answer">The matrix mathematically projects your total conducted classes against your current presence. It isolates the exact numerical margin you have before your ratio drops below the mandatory 75% baseline.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is the Wealth Projector (SIP) guaranteed?</div>
+                <div class="faq-answer">The Wealth Projector utilizes strict mathematical compounding based on the Expected Return percentage you input. It does not account for real-world market volatility, inflation adjustments, or taxation.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is my financial and biometric data stored on your servers?</div>
+                <div class="faq-answer">No. NexusCalc is a client-side architecture. All calculations (SIP, EMI, BMI) are executed entirely within your local browser. Zero personal data is transmitted or stored on AstraForge databases.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How does the AI Command Terminal work?</div>
+                <div class="faq-answer">The terminal utilizes a lightweight Natural Language Processing (NLP) regex script. You can type human-readable queries like "15% of 85000" and the engine will instantly extract and compute the numeric variables.</div>
+            </div>
+
+            <a href="mailto:contact@astraforage.in" class="email-direct">✉️ Direct Secure Link: contact@astraforage.in</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-links" style="margin-bottom: 20px;">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a> | 
+            <a href="support.html" style="color: var(--neon-cyan);">Support</a> | 
+            <a href="mailto:contact@astraforage.in">Contact Us</a>
+        </div>
+        <p>&copy; 2026 NexusCalc & AstraForge Analytics. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i=0; i<30; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>
